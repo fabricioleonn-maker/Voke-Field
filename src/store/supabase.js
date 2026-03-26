@@ -5,6 +5,8 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+const generateId = () => Math.random().toString(36).substr(2, 9);
+
 export const COLUMNS = {
   CLIENTS: 'clients',
   PROJECTS: 'projects',
@@ -49,7 +51,8 @@ const buildSupabaseCrud = (tableName) => ({
     return mapObject(data, toCamelCase);
   },
   create: async (data) => {
-    const snakeData = mapObject(data, toSnakeCase);
+    const dataWithId = { id: generateId(), ...data };
+    const snakeData = mapObject(dataWithId, toSnakeCase);
     const { data: created, error } = await supabase.from(tableName).insert(snakeData).select().single();
     if (error) throw error;
     return mapObject(created, toCamelCase);
