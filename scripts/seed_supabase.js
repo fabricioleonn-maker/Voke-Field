@@ -85,6 +85,35 @@ async function seed() {
     { id: 'srv-4', nome: 'Manutenção Preventiva', base_price: 120.00 }
   ]);
 
+  // 9. OS for Today
+  const today = new Date().toISOString().split('T')[0];
+  await insert('os', [
+    { 
+      id: 'os-today-1', 
+      code: 'ARK0001', 
+      client_id: 'cli-meli', 
+      collaborator_id: 'col-1', 
+      date: today, 
+      scheduled_time: '09:00', 
+      status: 'Em Execução',
+      latitude: -23.63, 
+      longitude: -46.72,
+      description: 'Manutenção de Coletores'
+    },
+    { 
+      id: 'os-today-2', 
+      code: 'ARK0002', 
+      client_id: 'cli-amazon', 
+      collaborator_id: 'col-2', 
+      date: today, 
+      scheduled_time: '14:00', 
+      status: 'Agendado',
+      latitude: -23.45, 
+      longitude: -46.78,
+      description: 'Configuração de Rede'
+    }
+  ]);
+
   console.log('--- Seed Finalizado ---');
 }
 
