@@ -25,7 +25,8 @@ export const COLUMNS = {
   ALERTS: 'alerts',
   NOTIFICATIONS: 'notifications',
   SETTINGS: 'settings',
-  OS_BLOCKS: 'os_blocks'
+  OS_BLOCKS: 'os_blocks',
+  TECH_ACTIONS: 'tech_actions'
 };
 
 const toSnakeCase = (str) => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
@@ -88,6 +89,7 @@ export const supabaseApi = {
   auditLogs: buildSupabaseCrud(COLUMNS.AUDIT_LOGS),
   statusMovements: buildSupabaseCrud(COLUMNS.STATUS_MOVEMENTS),
   alerts: buildSupabaseCrud(COLUMNS.ALERTS),
+  techActions: buildSupabaseCrud(COLUMNS.TECH_ACTIONS),
   settings: {
     get: async () => {
       const { data, error } = await supabase.from(COLUMNS.SETTINGS).select('*').limit(1).single();
