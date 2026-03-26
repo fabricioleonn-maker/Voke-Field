@@ -250,6 +250,8 @@ export default function Scheduling() {
     setOsList(osWithClients);
     setBlocks(allBlocks);
     setClients(allClients);
+    console.log('[Agenda] Raw Collaborators:', allColabs);
+    console.log('[Agenda] Filtered Colabs:', filteredColabs);
     console.log('[Agenda] Loaded:', osWithClients.length, 'OS, viewing date:', date);
     console.log('[Agenda] OS dates:', osWithClients.map(o => ({ code: o.code, date: o.date, normalizedDate: normalizeDate(o.date), colabId: o.collaborator_id || o.technicianId })));
     console.log('[Agenda] Blocks:', allBlocks.length, allBlocks.map(b => ({ techId: b.technicianId, date: b.date, type: b.type })));
